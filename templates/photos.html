@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Мои файлы
+{% endblock %}
+
+{% block body %}
+
+{% block main %}
+<div class="container">
+    {% if status %}
+
+    {% else %}
+<span><h3>Отсортировать по</h3>
+<a href="/photos/format" class="btn btn-success">расширению</a>
+<a href="/photos/size_up" class="btn btn-success">размеру(по возрастанию)</a>
+<a href="/photos/size_down" class="btn btn-success">размеру(по убыванию)</a>
+    <a href="/photos/def" class="btn btn-success">дате добавления</a></span>
+    {% endif %}
+<span style="text-align:right"><h3>Поиск по тегу</h3>
+<form method="post" class="needs-validation" enctype="multipart/form-data">
+    <input type="text" name="tag" id="tag"  placeholder="Введите тег" value="" required=""><br>
+    <input type="submit" class="btn btn-primary"  style="text-align: center;" value="Поиск">
+</form>
+</span>
+</div>
+
+{% if formats|length > 0 %}
+{% for format in formats.keys() %}
+<h2>.{{ format }}</h2>
+{% for a in formats[format] %}
+{% if a.name[-3:] == "mp4" or a.name[-3:] == "avi" or a.name[-3:] == "mov" %}
+<a href="/video/{{ a.id }}"><video autoplay="autoplay" loop="loop" muted width="400" height="400"><source src="{{ url_for('static', filename='img/{}'.format(a.name)) }}"/></video></a>
+{% else %}
+<a href="/photo/{{ a.id }}"><img class="bd-placeholder-img" width="200" height="200"  src="{{ url_for('static', filename='img/{}'.format(a.name)) }}"></a>
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% else %}
+
+{% if photos|length > 0 %}
+<h2>Фото</h2>
+   {% for a in photos %}
+<a href="/photo/{{ a.id }}"><img class="bd-placeholder-img" width="200" height="200"  src="{{ url_for('static', filename='img/{}'.format(a.name)) }}"></a>
+{% endfor %}
+            {% else %}
+            <p>Пока у вас нет фото</p>
+            {% endif %}
+<br>
+<h2>Видео</h2>
+{% if videos|length > 0 %}
+   {% for a in videos %}
+<a href="/video/{{ a.id }}"><video autoplay="autoplay" loop="loop" muted width="400" height="400"><source src="{{ url_for('static', filename='img/{}'.format(a.name)) }}"/></video></a>
+{% endfor %}
+            {% else %}
+            <p>Пока у вас нет видео</p>
+            {% endif %}
+{% endif %}
+{% if status %}
+<a href="/photos/def" class="btn btn-primary">Назад</a>
+{% endif %}
+{% endblock %}
+
+
+
+{% endblock %}
+
+
+

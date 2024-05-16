@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Альбом {{album.name}}
+{% endblock %}
+
+<!--
+
+
+    fio - владыка альбома (str)
+    album - сам альбом (ооп)
+    all_user - у кого есть доступ (наверное нада убрать)
+
+
+    сделать вывод фоток и остальные функции там ещё чё нить
+
+    создать удаление и редактирование, а так же разобраться с доступом
+
+
+ -->
+
+{% block main %}
+<style>
+.map {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.container-m {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 35px;
+    font-family: 'Arial Narrow Bold', sans-serif;
+    margin-bottom: 20px;
+}
+
+img.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+</style>
+
+{% if (album.access == -1 and current_user.is_authenticated and current_user.id == album.id_user) or (album.access == 0 and current_user.is_authenticated) or (album.access == 2 and current_user.id in access_list) or (album.access == 1) %}
+
+<br>
+<h2>{{album.name}} </h2>
+
+<hr class="my-4">
+<br>
+<h5>всего файлов: {{len_cont}}</h5> <br>
+<em>Владелец: </em>
+
+<a href="/profile/{{fio.id}}"><em>{{fio.fio}}</em></a><br>
+<br>
+<h4>файлы:</h4>
+<br>
+{% if photos|length > 0 %}
+   {% for a in photos %}
+<a href="/photo/{{ a.id }}"><img class="bd-placeholder-img" width="200" height="200"  src="{{ url_for('static', filename='img/{}'.format(a.name)) }}"></a>
+{% endfor %}
+            {% else %}
+            <p>Пока у вас нет фото</p>
+            {% endif %}
+<br>
+{% if videos|length > 0 %}
+   {% for a in videos %}
+<a href="/video/{{ a.id }}"><video autoplay="autoplay" loop="loop" muted  width="600" height="800">
+                    <source src="{{ url_for('static', filename='img/{}'.format(a.name)) }}"/>
+                </video></a>
+{% endfor %}
+            {% endif %}
+
+
+
+
+    <hr class="my-4">
+<a href="/download_album/{{ album.id }}" class="btn btn-info">Скачать</a>
+{% if current_user.id == album.id_user %}
+    <a href="/album/add_content/{{ album.id }}" class="btn btn-success">Добавить контент</a>
+
+    <a href="/edit_album/{{ album.id }}" class="btn btn-warning">Редактировать</a>
+    <a href="/delete_album/{{ album.id }}" class="btn btn-danger">Удалить</a>
+{% endif %}
+<br>
+<br>
+{% if current_user.id == album.id_user %}
+    {% for user in all_user %}
+        <a href="/profile/{{ user.id }}">{{user.fio}}</a>
+        <br>
+    {% endfor %}
+{% endif %}
+{% else %}
+<h2>Отказано в доступе</h2>
+{% endif %}
+{% endblock %}

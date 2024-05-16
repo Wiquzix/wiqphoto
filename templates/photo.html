@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Фото
+{% endblock %}
+
+{% block body %}
+
+{% block main %}
+<h1>Фото</h1>
+<div style="display:table">
+<img style="dislpay:table-row" class="bd-placeholder-img" width="400" height="400"  src="{{ url_for('static', filename='img/{}'.format(photo.name)) }}">
+<br>
+    <div style="display:table-cell; font-size:20px">
+        {% if album is none %}
+        <h4>Альбом: Не в альбоме</h4>
+        {% if photo.id_user == current_user.id %}
+        <a href="/add_to_album/{{ photo.id }}" class="btn btn-success">Добавить в альбом</a>
+        {% endif %}
+        {% else %}
+        <h4>Альбом: <a href="/album/{{ album.id }}">{{ album.name }}</a></h4>
+        {% if photo.id_user == current_user.id %}
+        <a href="/delete_from_album/{{ photo.id }}" class="btn btn-danger">Удалить из альбома</a>
+        {% endif %}
+        {% endif %}
+        <br>
+        <em>Владелец: </em>
+        <a href="/profile/{{fio.id}}"><em>{{fio.fio}}</em></a><br>
+        <em>Размер файла: </em>
+        {% if size // 1024 // 1024 >= 1 %}
+        <em>{{ size // 1024 // 1024}}.{{ size // 1024 % 1024}} МБ</em><br>
+        {% else %}
+        <em>{{ size // 1024}}.{{ size % 1024}} КБ</em><br>
+        {% endif %}
+        <em>Формат файла: </em>
+        <em>{{ format }}</em><br>
+    </div>
+</div>
+<br>
+<div class="container">
+
+    {% if photo.id_user == current_user.id %}
+    <a href="/download/{{ photo.id }}" class="btn btn-info">Скачать</a>
+<a href="/gps/{{ photo.id }}" class="btn btn-secondary">Узнать где сделано фото</a>
+<a href="/t/{{ photo.id }}" class="btn btn-warning">Редактировать фото</a>
+<a href="/objects/{{ photo.id }}" class="btn btn-primary">Какие объекты(теги) на фото</a>
+<a href="/tags/{{ photo.id }}" class="btn btn-primary">Добавить теги на фото</a>
+<a href="/delete_photo/{{ photo.id }}" class="btn btn-danger">Удалить</a>
+    {% else %}
+    <a href="/download/{{ photo.id }}" class="btn btn-info">Скачать</a>
+    <a href="/gps/{{ photo.id }}" class="btn btn-secondary">Узнать где сделано фото</a>
+    {% endif %}
+
+</div>
+{% endblock %}
+
+
+
+{% endblock %}
+
+
+

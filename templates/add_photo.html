@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Добавление файла
+{% endblock %}
+
+{% block body %}
+
+<article class="my-3" id="input-group">
+      <div class="container">
+          <form method="post" class="needs-validation" enctype="multipart/form-data">
+            <input type="file" name="file" id="file" class="form-control" placeholder="Выберите файл" required="" multiple><br>
+            <input type="submit" class="btn btn-primary"  style="text-align: center;" value="Добавить файл">
+          </form>
+      </div>
+
+</article>
+
+
+{% endblock %}

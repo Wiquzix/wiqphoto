@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Фото
+{% endblock %}
+
+{% block body %}
+
+{% block main %}
+<h1>фото</h1>
+<img class="bd-placeholder-img" width="400" height="400"  src="{{ url_for('static', filename='img/{}'.format(photo.name)) }}">
+<h2>Найденые объекты</h2>
+{% if obj|length > 0 %}
+   {% for a in obj %}
+<h3>{{ a }}</h3>
+{% endfor %}
+            {% else %}
+            <p>Пока у нас нет товаров</p>
+            {% endif %}
+<a href="/photo/{{ photo.id }}" class="btn btn-primary">Назад</a>
+{% endblock %}
+
+
+
+{% endblock %}
+
+
+

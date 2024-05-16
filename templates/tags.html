@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Добавление тегов
+{% endblock %}
+
+{% block main %}
+
+
+<article class="my-3" id="input-group">
+      <div class="container">
+          <h3>!Теги нужно вводить через запятую и пробел!</h3>
+          <h3>!Вот так: тег1, тег2, тег3, и т.д!</h3>
+          <form method="post" class="needs-validation" enctype="multipart/form-data">
+            <input type="text" name="tags" id="tags" class="form-control" placeholder="Введите теги" value="" required=""><br>
+            <input type="submit" class="btn btn-primary"  style="text-align: center;" value="Добавить теги">
+          </form>
+      </div>
+
+</article>
+
+
+{% endblock %}

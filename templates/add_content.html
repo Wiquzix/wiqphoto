@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Добавление фото
+{% endblock %}
+
+{% block main %}
+<section class="text-center container">
+    <div class="col-lg-6 col-md-8 mx-auto">
+        <h1>Добавление файлов</h1>
+        <form class="needs-validation" method="post" enctype="multipart/form-data">
+            <input type="file" class="form-control" name="file" placeholder="Выберите фотографию" required="" multiple><br>
+            <input type="submit" class="btn btn-primary" value="Добавление">
+        </form>
+    </div>
+</section>
+
+{% endblock %}

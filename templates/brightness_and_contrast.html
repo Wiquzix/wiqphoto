@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block body %}
+
+{% block main %}
+
+<h1>Яркость и контрастность</h1>
+<img class="bd-placeholder-img" width="200" height="200" src="/static/img/{{ photo.name }}">
+<form method="post" class="needs-validation" enctype="multipart/form-data">
+    <input type="text" name="brightness" id="brightness" class="form-control" placeholder="Яркость" value="{{ photo.brightness }}" required=""><br>
+    <input type="text" name="contrast" id="contrast" class="form-control" placeholder="Контрастность" value="{{ photo.contrast }}" required=""><br>
+    <input type="submit" class="btn btn-primary"  style="text-align: center;" value="Изменить">
+</form>
+<a href="/save/{{ photo.id }}" class="btn btn-success">Сохранить изменения</a>
+<a href="/cancel/{{ photo.id }}" class="btn btn-danger">Отменить изменения</a>
+{% endblock %}
+
+
+
+{% endblock %}
+
+
+

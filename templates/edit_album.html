@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Редактировать альбом
+{% endblock %}
+
+
+
+{% block main %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger">
+            {% for message in messages %}
+            <h2>{{ message }}</h2>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+    <br>
+    <h3 id="header-elem">Редактирование альбома</h3>
+    <hr class="my-4">
+    <form method="post" enctype="multipart/form-data" id="form">
+        <input type="text" name="name" id="name" class="form-control" placeholder="Введите название альбома" value="{{ album.name }}" required=""><br>
+        <em> -1 доступ только владельцу альбома</em> <br>
+        <em>0 доступ только зарегистрированным пользователям</em> <br>
+        <em>1 доступ всем</em> <br>
+        <em>или укажите email пользователей(если их несколько ведите через пробел)</em>
+        <input type="text" name="access" id="access" class="form-control" placeholder="Введите доступ" value="{{ ac }}" required=""><br>
+
+
+        <!-- <textarea name="about" id="about" class="form-control" placeholder="Введите описание мероприятия" required=""></textarea><br>
+        <input type="file" class="form-control" name="file" placeholder="Выберите фотографию мероприятия" value="" required=""><br>
+        <input type="text" name="adress" id="adress" class="form-control" placeholder="Введите адресс мероприятия" value="" required=""><br>
+        <input type="text" name="time1" id="time1" class="form-control" placeholder="Введите начало мероприятия" value="" required=""><br>
+        <input type="text" name="time2" id="time2" class="form-control" placeholder="Введите окончание мероприятия" value="" required=""><br>
+
+        <div class="input-group">
+          <span class="input-group-text">Тип и цена билета</span>
+          <input type="text" aria-label="Тип" id="type" name="type" class="form-control" placeholder="Тип" value="" required="">
+          <input type="text" aria-label="Цена" id="price" name="price" class="form-control" placeholder="Цена" value="" required="">
+        </div>
+
+        <div class="input-group">
+          <span class="input-group-text">Тип и цена билета</span>
+          <input type="text" aria-label="Тип" id="type2" name="type2" class="form-control" placeholder="Тип" value="" required="">
+          <input type="text" aria-label="Цена" id="price2" name="price2" class="form-control" placeholder="Цена" value="" required="">
+        </div>
+
+        <div class="input-group">
+          <span class="input-group-text">Тип и цена билета</span>
+          <input type="text" aria-label="Тип" id="type3" name="type3" class="form-control" placeholder="Тип" value="" required="">
+          <input type="text" aria-label="Цена" id="price3" name="price3" class="form-control" placeholder="Цена" value="" required="">
+        </div>    -->
+       <input type="submit" class="btn btn-primary" value="Отправить">
+    </form>
+{% endblock %}

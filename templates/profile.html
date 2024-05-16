@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Профиль
+{% endblock %}
+
+
+
+{% block main %}
+    <br>
+    <div style="display:table">
+    <img style="dislpay:table-row; border-radius:30px" src="/static/img/{{user.ava}}" alt="ава" width="400" height="400">
+        <div style="display:table-cell">
+            <h4>ФИО: <em>{{user.fio}}</em></h4>
+    <h4>Файлов на сайте: {{count_files}}</h4>
+            </div>
+    <br>
+        </div>
+
+
+
+{% endblock %}

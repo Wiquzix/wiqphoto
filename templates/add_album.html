@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Создать альбом
+{% endblock %}
+
+
+
+{% block main %}
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger">
+            {% for message in messages %}
+            <h2>{{ message }}</h2>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+    <br>
+    <h3 id="header-elem">Создание альбома</h3>
+    <hr class="my-4">
+    <form method="post" enctype="multipart/form-data" id="form">
+        <input type="text" name="name" id="name" class="form-control" placeholder="Введите название альбома" value="" required=""><br>
+        <em> -1 доступ только владельцу альбома</em> <br>
+        <em>0 доступ только зарегистрированным пользователям</em> <br>
+        <em>1 доступ всем</em> <br>
+        <em>или укажите email пользователей(если их несколько ведите через пробел)</em>
+        <input type="text" name="access" id="access" class="form-control" placeholder="Введите доступ" value="" required=""><br>
+       <input type="submit" class="btn btn-primary" value="Создать">
+    </form>
+{% endblock %}

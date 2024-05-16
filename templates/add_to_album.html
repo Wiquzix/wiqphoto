@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Добавление в альбом
+{% endblock %}
+
+{% block main %}
+<section class="text-center container">
+    <div class="col-lg-6 col-md-8 mx-auto">
+        <h1>Добавление файлов</h1>
+        <form class="needs-validation" method="post" enctype="multipart/form-data">
+            <input type="text" name="name" id="name" class="form-control" placeholder="Введите название альбома" value="" required=""><br>
+            <input type="submit" class="btn btn-primary" value="Добавить">
+        </form>
+    </div>
+</section>
+
+{% endblock %}

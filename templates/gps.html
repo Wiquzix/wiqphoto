@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block body %}
+
+{% block main %}
+
+<h1>Фото сделано здесь</h1>
+<div style="position:relative;overflow:hidden;"><a href="https://yandex.ru/maps?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Яндекс Карты</a><a href="https://yandex.ru/maps/?ll={{ latitude }}%2C{{ longitude }}&mode=search&sll={{ longitude }}%2C{{ latitude }}&text={{ latitude }}%2C{{ longitude }}&utm_medium=mapframe&utm_source=maps&z=8" style="color:#eee;font-size:12px;position:absolute;top:14px;">тут</a><iframe src="https://yandex.ru/map-widget/v1/?ll={{ latitude }}%2C{{ longitude }}&mode=search&sll={{ longitude }}2C{{ latitude }}&text={{ latitude }}%2C{{ longitude }}&z=8" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe></div>
+<a href="/photo/{{ photo.id }}" class="btn btn-primary">Назад</a>
+{% endblock %}
+
+
+
+{% endblock %}
+
+
+

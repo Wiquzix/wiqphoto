@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Видео
+{% endblock %}
+
+{% block body %}
+
+{% block main %}
+<h1>Видео</h1>
+<div style="display:table">
+<video style="dislpay:table-row" controls loop='loop' width="800" height="600"><source src="{{ url_for('static', filename='img/{}'.format(video.name)) }}"/></video>
+<br>
+ <div style="display:table-cell; font-size:20px">
+        {% if album is none %}
+        <h4>Альбом: Не в альбоме</h4>
+        {% if video.id_user == current_user.id %}
+        <a href="/add_to_album/{{ video.id }}" class="btn btn-success">Добавить в альбом</a>
+        {% endif %}
+        {% else %}
+        <h4>Альбом: <a href="/album/{{ album.id }}">{{ album.name }}</a></h4>
+        {% if video.id_user == current_user.id %}
+        <a href="/delete_from_album/{{ video.id }}" class="btn btn-danger">Удалить из альбома</a>
+        {% endif %}
+        {% endif %}
+        <br>
+        <em>Владелец: </em>
+        <a href="/profile/{{fio.id}}"><em>{{fio.fio}}</em></a><br>
+        <em>Размер файла: </em>
+        <em>{{ size // 1024}} КБ</em><br>
+        <em>Формат файла: </em>
+        <em>{{ format }}</em><br>
+    </div>
+</div>
+
+<a href="/download/{{ video.id }}" class="btn btn-info">Скачать</a>
+{% if video.id_user == current_user.id %}
+<a href="/delete_photo/{{ video.id }}" class="btn btn-danger">Удалить</a>
+{% endif %}
+{% endblock %}
+
+
+
+{% endblock %}
+
+
+

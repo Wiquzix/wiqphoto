@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block body %}
+
+{% block main %}
+
+<h1>Test</h1>
+<img class="bd-placeholder-img"  src="/static/img/{{ photo.name }}">
+<a href="/cropping/{{ photo.id }}" class="btn btn-primary">Обрезать</a>
+<a href="/photo/{{ photo.id }}" class="btn btn-primary">Назад</a>
+{% endblock %}
+
+
+
+{% endblock %}
+
+
+
